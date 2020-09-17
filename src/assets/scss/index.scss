@@ -15,9 +15,3 @@ font-family: 'Montserrat', sans-serif;
 // general sass
 @import "./component-styles/variable";
 @import "./component-styles/general";
-
-
-h2{
-    color: $secondaryColor;
-    text-align: center;
-}
