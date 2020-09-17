@@ -9,7 +9,8 @@ class Home extends Component {
 
     state = {
         keyword: '',
-        dishes: data
+        dishes: data,
+        selectedDish: null
     }
 
     handleChange = e => {
@@ -23,13 +24,19 @@ class Home extends Component {
         }
     }
 
+    onSelectDish = dish => {
+        this.setState({
+            selectedDish: dish
+        })
+    }
+
     render() {
         const {dishes} = this.state;
         return (
             <Fragment>
                 <div className="container">
                     <Search handleChange={this.handleChange}/>
-                    <MenuList dishes={dishes}/>
+                    <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} />
                 </div>
             </Fragment>
         )

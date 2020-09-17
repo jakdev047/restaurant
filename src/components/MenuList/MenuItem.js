@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card, CardBody, CardImg, CardTitle } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardTitle } from 'reactstrap';
 
-export const MenuItem = ({item}) => {
-    console.log(item);
+export const MenuItem = props => {
+    const {item} = props;
     return (
-        <div className="col-md-4 col-sm-6">
+        <div className="col-sm-6">
             <Card style={{margin:'10px'}}>
                 <CardImg width="100%" alt={item.name} src={item.image}  />
                 <CardBody>
                     <CardTitle style={{color:'#000'}}>{item.name}</CardTitle>
+                    <Button color="primary" onClick={()=>props.onSelectDish(item)}>Details</Button>
                 </CardBody>
             </Card>
         </div>
