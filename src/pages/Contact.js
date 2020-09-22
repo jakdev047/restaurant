@@ -1,9 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import MenuList from '../components/MenuList/MenuList';
-import { Search } from '../components/Search/Search';
-
-// data
-import data from '../data/dishes';
 
 class Contact extends Component {
 

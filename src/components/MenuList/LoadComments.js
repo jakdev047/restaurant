@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFormate from 'dateformat';
 
-export const LoadComments = ({comments}) => {
+const LoadComments = ({comments}) => {
     return(
         <div>
             {
@@ -17,4 +17,6 @@ export const LoadComments = ({comments}) => {
             }
         </div>
     );
-}
+};
+
+export default LoadComments;

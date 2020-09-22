@@ -1,33 +1,24 @@
-import React, { Component, Fragment } from 'react'
-import DisDetails from './DisDetails';
-import { MenuItem } from './MenuItem';
+import React, { Component, Fragment } from 'react';
+import MenuItem from './MenuItem';
 
 class MenuList extends Component {
     render() {
-        const {dishes,onSelectDish,selectedDish} = this.props;
-
-        let dishDetail = null;
-        if(selectedDish != null) {
-            dishDetail = <DisDetails selectedDish= {selectedDish} />
-        }
+        const {dishes} = this.props;
 
         return (
             <Fragment>
                 <div className="container">
                     <div className="row">
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 {
                                     dishes.map(item=>{
                                         return (
-                                            <MenuItem key={item.id} item={item} onSelectDish={onSelectDish} />
+                                            <MenuItem key={item.id} item={item} />
                                         )
                                     })
                                 }
                             </div>
-                        </div>
-                        <div className="col-6">
-                            {dishDetail}
                         </div>
                     </div>
                 </div>
