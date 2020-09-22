@@ -2,7 +2,6 @@ import React from 'react';
 import dateFormate from 'dateformat';
 
 export const LoadComments = ({comments}) => {
-    console.log(comments);
     return(
         <div>
             {

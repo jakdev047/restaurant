@@ -15,3 +15,9 @@ font-family: 'Montserrat', sans-serif;
 // general sass
 @import "./component-styles/variable";
 @import "./component-styles/general";
+
+// navbar
+li.nav-item a {
+    color: #fff;
+    margin-left: 15px;
+}
