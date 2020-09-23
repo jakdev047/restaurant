@@ -1,6 +1,7 @@
 import React from 'react'
 
 const About = () => {
+    document.title = "About";
     return (
         <div className="container">
             <h2> Restaurant App </h2>

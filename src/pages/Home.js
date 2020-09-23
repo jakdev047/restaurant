@@ -33,6 +33,7 @@ class Home extends Component {
     }
 
     render() {
+        document.title = "Home";
         const {dishes} = this.state;
         return (
             <Fragment>

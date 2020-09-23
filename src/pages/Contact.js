@@ -33,6 +33,7 @@ class Contact extends Component {
     }
 
     render() {
+        document.title = "Contact";
         return (
             <Fragment>
                 <div className="container">
