@@ -5,10 +5,14 @@ import LoadComments from './LoadComments';
 
 const MenuItem = props => {
 
-    const {item} = props;
+    const {item,comments} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const comment = comments.filter(comment=>{
+        return comment.dishId === item.id;
+    })
 
     return (
         <div className="col-md-4 col-sm-6">
@@ -32,7 +36,9 @@ const MenuItem = props => {
                         <h4>${item.price}</h4>
                     </CardBody>
                     <h3>Comments</h3>
-                    <LoadComments comments={item.comments}/>
+                    {
+                        comment ? <LoadComments comment={comment}/> : null
+                    }
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={toggle}>Cancel</Button>

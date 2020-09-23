@@ -1,11 +1,11 @@
 import React from 'react';
 import dateFormate from 'dateformat';
 
-const LoadComments = ({comments}) => {
+const LoadComments = ({comment}) => {
     return(
         <div>
             {
-                comments.map(comment => {
+                comment.map(comment => {
                     return (
                         <div key={comment.id}>
                             <h5>{comment.author}</h5>

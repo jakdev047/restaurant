@@ -4,12 +4,14 @@ import { Search } from '../components/Search/Search';
 
 // data
 import data from '../data/dishes';
+import comments from '../data/comments';
 
 class Home extends Component {
 
     state = {
         keyword: '',
         dishes: data,
+        comments,
         selectedDish: null
     }
 
@@ -36,7 +38,7 @@ class Home extends Component {
             <Fragment>
                 <div className="container">
                     <Search handleChange={this.handleChange}/>
-                    <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} />
+                    <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} comments={comments} />
                 </div>
             </Fragment>
         )
