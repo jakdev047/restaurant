@@ -2,8 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className="container">
-            <h2>Footer</h2>
+        <div style={{background:"#000",padding:"15px 0"}} className="row justify-content-center">
+            <div className="col-auto">
+                <p style={{color:"#fff",fontSize:"14px"}}>Jubayer Alam Khan &#169; Copyright 2020 </p>
+            </div>
         </div>
     )
 }
