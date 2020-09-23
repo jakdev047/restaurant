@@ -1,5 +1,5 @@
 import React, { Component,Fragment } from 'react';
-import { Switch,Route} from "react-router-dom";
+import { Switch,Route, Redirect} from "react-router-dom";
 
 // pages
 import Home from '../pages/Home';
@@ -19,9 +19,10 @@ class AppRoute extends Component {
         <Header />
 
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/home' component={Home}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/contact' component={Contact}/>
+          <Redirect from="/" to="/home" />
           <Route path='*' component={NotFound}/>
         </Switch>
 
