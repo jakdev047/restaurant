@@ -1,14 +1,31 @@
-import dishes from '../dishes';
 import comments from  '../comments';
-import { ADD_COMMENT } from '../actions/type';
+import { ADD_COMMENT, DISHES_LOADING, LOAD_DISHES } from '../actions/type';
 
 const initialState = {
-    dishes,
-    comments
+    dishes: [],
+    comments,
+    isLoading: false
 };
 
 const reducers = (state=initialState,action) => {
     switch(action.type) {
+
+        case DISHES_LOADING: {
+            return {
+                ...state,
+                dishes: [],
+                isLoading: true
+            }
+        }
+
+        case LOAD_DISHES: {
+            return {
+                ...state,
+                dishes: action.payload,
+                isLoading: false
+            }
+        }
+
         case ADD_COMMENT:{
             return {
                 ...state,
