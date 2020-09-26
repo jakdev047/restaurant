@@ -41,7 +41,7 @@ const MenuItem = props => {
 
                     <hr/>
 
-                    <CommentForm />
+                    <CommentForm  dishId={item.id} />
 
                 </ModalBody>
                 <ModalFooter>

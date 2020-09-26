@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
+import { connect } from 'react-redux';
+import {addComment} from '../../data/actions/menu';
+import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
 class CommentForm extends Component {
 
@@ -20,6 +22,13 @@ class CommentForm extends Component {
 
     onSubmitHandler = e => {
         e.preventDefault();
+        const newComment = {
+            dishId: this.props.dishId,
+            author: this.state.author,
+            rating: this.state.rating,
+            comment: this.state.comment
+        } 
+        this.props.addComment(newComment);
         console.log(this.state);
 
         // reset
@@ -81,4 +90,4 @@ class CommentForm extends Component {
     }
 };
 
-export default CommentForm;
+export default connect(null,{addComment})(CommentForm);
