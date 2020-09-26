@@ -1,30 +1,17 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+
+// component
 import MenuList from '../components/MenuList/MenuList';
 import { Search } from '../components/Search/Search';
 
-// data
-import data from '../data/dishes';
-import comments from '../data/comments';
-
 class Home extends Component {
-
     state = {
         keyword: '',
-        dishes: data,
-        comments,
         selectedDish: null
     }
 
-    handleChange = e => {
-        let keyword = e.target.value;
-        const results = [...this.state.dishes].filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()));
-        if(results) {
-            this.setState({
-                keyword,
-                dishes: results
-            });
-        }
-    }
+    handleChange = e => {}
 
     onSelectDish = dish => {
         this.setState({
@@ -34,16 +21,23 @@ class Home extends Component {
 
     render() {
         document.title = "Home";
-        const {dishes} = this.state;
+        const {dishes} = this.props;
         return (
             <Fragment>
                 <div className="container">
                     <Search handleChange={this.handleChange}/>
-                    <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} comments={comments} />
+                    <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} comments={this.props.comments} />
                 </div>
             </Fragment>
         )
     }
 };
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        dishes: state.menu.dishes,
+        comments: state.menu.comments
+    }
+}
+
+export default connect(mapStateToProps)(Home);
