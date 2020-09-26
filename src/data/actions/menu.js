@@ -13,11 +13,9 @@ export const loadingDishes = () => ({
 })
 
 // fetchDishes
-export const fetchDishes = () => {
-    return dispatch => {
-        dispatch(loadingDishes);
-        setTimeout(()=>{dispatch(loadDishes(dishes))},2000)   
-    }
+export const fetchDishes = () => dispatch => {
+    dispatch(loadingDishes());
+    setTimeout(()=>{dispatch(loadDishes(dishes))},1000);   
 }
 
 // add comment
