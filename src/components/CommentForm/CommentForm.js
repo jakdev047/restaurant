@@ -30,7 +30,6 @@ class CommentForm extends Component {
             comment: this.state.comment
         } 
         this.props.addComment(newComment);
-        console.log(this.state);
 
         // reset
         this.setState({
