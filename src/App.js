@@ -4,6 +4,7 @@ import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 
 // sass
+import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/scss/index.scss';
 

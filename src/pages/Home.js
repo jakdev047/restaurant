@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // component
 import MenuList from '../components/MenuList/MenuList';
 import { Search } from '../components/Search/Search';
+import Loading from '../components/Loading/Loading';
 
 class Home extends Component {
     state = {
@@ -25,6 +26,7 @@ class Home extends Component {
         return (
             <Fragment>
                 <div className="container">
+                    <Loading />
                     <Search handleChange={this.handleChange}/>
                     <MenuList dishes={dishes} onSelectDish={this.onSelectDish} selectedDish={this.state.selectedDish} comments={this.props.comments} />
                 </div>
