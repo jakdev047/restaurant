@@ -23,6 +23,7 @@ class CommentForm extends Component {
     onSubmitHandler = e => {
         e.preventDefault();
         const newComment = {
+            id: this.props.commentId,
             dishId: this.props.dishId,
             author: this.state.author,
             rating: this.state.rating,
