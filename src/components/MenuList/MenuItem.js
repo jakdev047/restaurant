@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Card, CardBody, CardImg, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import CommentForm from '../CommentForm/CommentForm';
 import LoadComments from './LoadComments';
 
 const MenuItem = props => {
@@ -26,7 +26,7 @@ const MenuItem = props => {
             </Card>
 
             {/* modal */}
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal}>
                 <ModalHeader toggle={toggle}>{item.name}</ModalHeader>
                 <ModalBody>
                     <CardImg width="100%" alt={item.name} src={item.image}  />
@@ -36,9 +36,13 @@ const MenuItem = props => {
                         <h4>${item.price}</h4>
                     </CardBody>
                     <h3>Comments</h3>
-                    {
-                        comment ? <LoadComments comment={comment}/> : null
-                    }
+
+                    <LoadComments comment={comment}/>
+
+                    <hr/>
+
+                    <CommentForm />
+
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
