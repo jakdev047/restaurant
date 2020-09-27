@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Control, Errors, LocalForm } from 'react-redux-form';
+import { connect } from 'react-redux';
+import { actions, Control, Errors, Form } from 'react-redux-form';
 import { Button, Col, FormGroup, Label } from 'reactstrap';
 
 const required = val => val && val.length;
@@ -13,6 +14,7 @@ class Contact extends Component {
 
     submitHandler = values => {
         console.log(values);
+        this.props.resetFeedBackForm();
     }
 
     render() {
@@ -25,7 +27,7 @@ class Contact extends Component {
                             <h3 className="py-3 text-center">Send Us Your Feedback</h3>
                         </div>
                         <div className="col-12">
-                            <LocalForm onSubmit={values=>this.submitHandler(values)}>
+                            <Form model="feedback" onSubmit={values=>this.submitHandler(values)}>
                                 <FormGroup row>
                                     <Label md={3}>First Name:</Label>
                                     <Col md={7}>
@@ -153,7 +155,7 @@ class Contact extends Component {
                                         <Button type="submit" color="primary">Submit</Button>
                                     </Col>
                                 </FormGroup>
-                            </LocalForm>
+                            </Form>
                         </div>
                     </div>
                 </div>
@@ -162,4 +164,10 @@ class Contact extends Component {
     }
 };
 
-export default Contact;
+const mapDispatchToProps = dispatch => {
+    return {
+        resetFeedBackForm: () => {dispatch(actions.reset('feedback'))}
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Contact);
