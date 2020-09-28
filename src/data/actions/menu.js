@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { ADD_COMMENT, DISHES_LOADING, LOAD_DISHES } from "./type";
-import dishes from "../dishes";
+import { baseURL } from '../baseUrl';
 
 // loadDishes
 export const loadDishes = dishes => ({
@@ -14,8 +15,15 @@ export const loadingDishes = () => ({
 
 // fetchDishes
 export const fetchDishes = () => dispatch => {
+
     dispatch(loadingDishes());
-    setTimeout(()=>{dispatch(loadDishes(dishes))},1000);   
+
+    axios.get(`${baseURL}/dishes`)
+        .then(response=>response.data)
+        .then(dishes=>{
+            dispatch(loadDishes(dishes))
+        })
+        .catch(error=>console.log(error))  
 }
 
 // add comment

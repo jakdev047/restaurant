@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Card, CardBody, CardImg, CardTitle, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { baseURL } from '../../data/baseUrl';
 import CommentForm from '../CommentForm/CommentForm';
 import LoadComments from './LoadComments';
 
@@ -18,7 +19,7 @@ const MenuItem = props => {
         <div className="col-md-4 col-sm-6">
 
             <Card style={{margin:'10px'}}>
-                <CardImg width="100%" alt={item.name} src={item.image}  />
+                <CardImg width="100%" alt={item.name} src={`${baseURL}/${item.image}`}  />
                 <CardBody>
                     <CardTitle style={{color:'#000'}}>{item.name}</CardTitle>
                     <Button color="primary" onClick={toggle}>Details</Button>
@@ -29,7 +30,7 @@ const MenuItem = props => {
             <Modal isOpen={modal}>
                 <ModalHeader toggle={toggle}>{item.name}</ModalHeader>
                 <ModalBody>
-                    <CardImg width="100%" alt={item.name} src={item.image}  />
+                    <CardImg width="100%" alt={item.name} src={`${baseURL}/${item.image}`}  />
                     <CardBody>
                         <CardTitle style={{color:'#000'}}>{item.name}</CardTitle>
                         <p>{item.description}</p>
