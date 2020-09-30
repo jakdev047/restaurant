@@ -51,9 +51,14 @@ export const fetchComments = () => dispatch => {
 }
 
 // add comment
-export const addComment = commnet => dispatch => {
-    dispatch({
-        type: ADD_COMMENT,
-        payload: commnet
-    })
-}
+export const addComment = comment => dispatch => {
+    axios.post(`${baseURL}/comments`,comment)
+        .then(response=>response.data)
+        .then(comment=>{
+            dispatch({
+                type: ADD_COMMENT,
+                payload: comment
+            })
+        })
+        .catch(error=>console.log(error))  
+};
