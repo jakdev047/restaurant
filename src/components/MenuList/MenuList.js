@@ -3,7 +3,7 @@ import MenuItem from './MenuItem';
 
 class MenuList extends Component {
     render() {
-        const {dishes,comments} = this.props;
+        const {dishes,comments,isCommentLoading} = this.props;
 
         return (
             <Fragment>
@@ -14,7 +14,7 @@ class MenuList extends Component {
                                 {
                                     dishes.map(item=>{
                                         return (
-                                            <MenuItem key={item.id} item={item} comments={comments} />
+                                            <MenuItem key={item.id} item={item} comments={comments} isCommentLoading={isCommentLoading} />
                                         )
                                     })
                                 }

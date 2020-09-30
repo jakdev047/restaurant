@@ -1,10 +1,10 @@
-import comments from  '../comments';
-import { ADD_COMMENT, DISHES_LOADING, LOAD_DISHES } from '../actions/type';
+import { ADD_COMMENT, COMMENTS_LOADING, DISHES_LOADING, LOAD_COMMENTS, LOAD_DISHES } from '../actions/type';
 
 const initialState = {
     dishes: [],
-    comments,
-    isLoading: false
+    comments:[],
+    isLoading: false,
+    isCommentLoading:true
 };
 
 const reducers = (state=initialState,action) => {
@@ -23,6 +23,22 @@ const reducers = (state=initialState,action) => {
                 ...state,
                 dishes: action.payload,
                 isLoading: false
+            }
+        }
+
+        case COMMENTS_LOADING: {
+            return {
+                ...state,
+                comments: [],
+                isCommentLoading: true
+            }
+        }
+
+        case LOAD_COMMENTS: {
+            return {
+                ...state,
+                isCommentLoading: false,
+                comments: action.payload
             }
         }
 

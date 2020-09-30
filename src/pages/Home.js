@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import {fetchDishes} from '../data/actions/menu';
+import {fetchDishes,fetchComments} from '../data/actions/menu';
 
 // component
 import MenuList from '../components/MenuList/MenuList';
@@ -15,6 +15,7 @@ class Home extends Component {
 
     componentDidMount() {
         this.props.fetchDishes();
+        this.props.fetchComments();
     }
 
     handleChange = e => {}
@@ -27,7 +28,7 @@ class Home extends Component {
 
     render() {
         document.title = "Home";
-        const {dishes,isLoading} = this.props;
+        const {dishes,isLoading,isCommentLoading} = this.props;
 
         if(isLoading) {
             return (
@@ -44,6 +45,7 @@ class Home extends Component {
                             onSelectDish={this.onSelectDish} 
                             selectedDish={this.state.selectedDish} 
                             comments={this.props.comments}
+                            isCommentLoading={isCommentLoading}
                         />
                     </div>
                 </Fragment>
@@ -57,7 +59,8 @@ const mapStateToProps = state => {
         dishes: state.menu.dishes,
         comments: state.menu.comments,
         isLoading: state.menu.isLoading,
+        isCommentLoading: state.menu.isCommentLoading,
     }
 }
 
-export default connect(mapStateToProps,{fetchDishes})(Home);
+export default connect(mapStateToProps,{fetchDishes,fetchComments})(Home);

@@ -6,7 +6,7 @@ import LoadComments from './LoadComments';
 
 const MenuItem = props => {
 
-    const {item,comments} = props;
+    const {item,comments,isCommentLoading} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -38,7 +38,7 @@ const MenuItem = props => {
                     </CardBody>
                     <h3>Comments</h3>
 
-                    <LoadComments comment={comment}/>
+                    <LoadComments comment={comment} isCommentLoading={isCommentLoading}/>
 
                     <hr/>
 
