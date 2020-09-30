@@ -37,7 +37,18 @@ class Contact extends Component {
                     },1500)
                 }
             })
-            .catch(error=>console.log(error))
+            .catch(error=>{
+                this.setState({
+                    alertShow: true,
+                    alertText: error.message,
+                    alertType: "danger"
+                })
+                setTimeout(()=>{
+                    this.setState({
+                        alertShow: false
+                    })
+                },1500)
+            })
         
         this.props.resetFeedBackForm();
     }
