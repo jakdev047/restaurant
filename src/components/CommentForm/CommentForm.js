@@ -27,7 +27,8 @@ class CommentForm extends Component {
             dishId: this.props.dishId,
             author: this.state.author,
             rating: this.state.rating,
-            comment: this.state.comment
+            comment: this.state.comment,
+            date: new Date().toISOString()
         } 
         this.props.addComment(newComment);
 
