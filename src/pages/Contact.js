@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { actions, Control, Errors, Form } from 'react-redux-form';
-import { Button, Col, FormGroup, Label } from 'reactstrap';
+import { Alert, Button, Col, FormGroup, Label } from 'reactstrap';
+import { baseURL } from '../data/baseUrl';
 
 const required = val => val && val.length;
 const isNumber = val => !isNaN(Number(val));
@@ -12,8 +14,31 @@ const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class Contact extends Component {
 
+    state = {
+        alertShow: false,
+        alertText: null,
+        alertType: null
+    }
+
     submitHandler = values => {
-        console.log(values);
+        axios.post(`${baseURL}/feedback`,values)
+            .then(response=>response.status)
+            .then(status=>{
+                if( status === 201 ){
+                    this.setState({
+                        alertShow: true,
+                        alertText: "Successfully Submitted",
+                        alertType: "success"
+                    })
+                    setTimeout(()=>{
+                        this.setState({
+                            alertShow: false
+                        })
+                    },1500)
+                }
+            })
+            .catch(error=>console.log(error))
+        
         this.props.resetFeedBackForm();
     }
 
@@ -25,6 +50,12 @@ class Contact extends Component {
                     <div className="row row-content" style={{paddingLeft:"20px",textAlign:"left"}}>
                         <div className="col-12">
                             <h3 className="py-3 text-center">Send Us Your Feedback</h3>
+                            <Alert 
+                                isOpen={this.state.alertShow}
+                                color={this.state.alertType}
+                            >
+                                {this.state.alertText}
+                            </Alert>
                         </div>
                         <div className="col-12">
                             <Form model="feedback" onSubmit={values=>this.submitHandler(values)}>
