@@ -6,6 +6,7 @@ import {fetchDishes,fetchComments} from '../data/actions/menu';
 import MenuList from '../components/MenuList/MenuList';
 // import { Search } from '../components/Search/Search';
 import Loading from '../components/Loading/Loading';
+import { Alert } from 'reactstrap';
 
 class Home extends Component {
     state = {
@@ -28,11 +29,22 @@ class Home extends Component {
 
     render() {
         document.title = "Home";
-        const {dishes,isLoading,isCommentLoading} = this.props;
+        const {dishes,isLoading,isCommentLoading,dishErrorMsg} = this.props;
 
         if(isLoading) {
             return (
                 <Loading />
+            );
+        }
+        else if( dishErrorMsg != null) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 my-5">
+                            <Alert color="danger text-center">{dishErrorMsg}</Alert>
+                        </div>
+                    </div>
+                </div>
             );
         }
         else {
@@ -60,6 +72,7 @@ const mapStateToProps = state => {
         comments: state.menu.comments,
         isLoading: state.menu.isLoading,
         isCommentLoading: state.menu.isCommentLoading,
+        dishErrorMsg: state.menu.dishErrorMsg
     }
 }
 

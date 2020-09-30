@@ -5,3 +5,4 @@ export const LOAD_COMMENTS = 'LOAD_COMMENTS';
 
 export const DISHES_LOADING = 'DISHES_LOADING';
 export const LOAD_DISHES = 'LOAD_DISHES';
+export const DISH_FAILED = 'DISH_FAILED';

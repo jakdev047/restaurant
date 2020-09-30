@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_COMMENT, COMMENTS_LOADING, DISHES_LOADING, LOAD_COMMENTS, LOAD_DISHES } from "./type";
+import { ADD_COMMENT, COMMENTS_LOADING, DISHES_LOADING, DISH_FAILED, LOAD_COMMENTS, LOAD_DISHES } from "./type";
 import { baseURL } from '../baseUrl';
 
 // loadDishes
@@ -23,8 +23,16 @@ export const fetchDishes = () => dispatch => {
         .then(dishes=>{
             dispatch(loadDishes(dishes))
         })
-        .catch(error=>console.log(error))  
+        .catch(error=>{
+            dispatch(dishesFailed(error.message))
+        })  
 }
+
+// dishesFailed
+export const dishesFailed = errMsg => ({
+    type: DISH_FAILED,
+    payload: errMsg
+});
 
 // loadingComments
 export const loadingComments = () => ({

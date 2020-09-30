@@ -1,10 +1,11 @@
-import { ADD_COMMENT, COMMENTS_LOADING, DISHES_LOADING, LOAD_COMMENTS, LOAD_DISHES } from '../actions/type';
+import { ADD_COMMENT, COMMENTS_LOADING, DISHES_LOADING, DISH_FAILED, LOAD_COMMENTS, LOAD_DISHES } from '../actions/type';
 
 const initialState = {
     dishes: [],
     comments:[],
     isLoading: false,
-    isCommentLoading:true
+    isCommentLoading:true,
+    dishErrorMsg: null
 };
 
 const reducers = (state=initialState,action) => {
@@ -14,7 +15,8 @@ const reducers = (state=initialState,action) => {
             return {
                 ...state,
                 dishes: [],
-                isLoading: true
+                isLoading: true,
+                dishErrorMsg: null
             }
         }
 
@@ -22,7 +24,17 @@ const reducers = (state=initialState,action) => {
             return {
                 ...state,
                 dishes: action.payload,
-                isLoading: false
+                isLoading: false,
+                dishErrorMsg:null,
+                dishes: []
+            }
+        }
+
+        case DISH_FAILED: {
+            return {
+                ...state,
+                isLoading: false,
+                dishErrorMsg: action.payload
             }
         }
 
